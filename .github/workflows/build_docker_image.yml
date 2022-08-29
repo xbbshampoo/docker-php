@@ -29,8 +29,8 @@ jobs:
       - name: Docker Buildx And Push
         run: |-
           docker buildx build \
-            --build-arg=${{ matrix.version }} \
+            --build-arg PHP_VERSION=${{ matrix.version }} \
             --platform linux/arm64,linux/amd64 \
             --output "type=image,push=true" \
-            --tag ${{ secrets.CI_REGISTRY_IMAGE }}:${{ matrix.version }} \
+            --tag ${{ secrets.CI_REGISTRY_IMAGE }}:${{ matrix.version }}-fpm \
             --file ./Dockerfile ./
