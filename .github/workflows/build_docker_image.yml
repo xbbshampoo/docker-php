@@ -30,7 +30,7 @@ jobs:
         run: |-
           docker buildx build \
             --build-arg PHP_VERSION=${{ matrix.version }} \
-            --platform linux/arm64,linux/amd64 \
+            --platform linux/amd64 \
             --output "type=image,push=true" \
             --tag ${{ secrets.CI_REGISTRY_IMAGE }}:${{ matrix.version }}-fpm \
             --file ./Dockerfile ./
