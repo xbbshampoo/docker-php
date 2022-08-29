@@ -3,6 +3,8 @@ name: Docker Image CI
 on:
   push:
     branches: [ "main" ]
+  schedule:
+    - cron: "0 10 */12 * *"
 jobs:
   build-image:
     runs-on: ubuntu-latest
