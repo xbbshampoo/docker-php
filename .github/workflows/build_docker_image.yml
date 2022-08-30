@@ -28,11 +28,20 @@ jobs:
           username: ${{ secrets.CI_REGISTRY_USER }}
           password: ${{ secrets.CI_REGISTRY_PASSWORD }}
           
-      - name: Docker Buildx And Push
+      - name: FPM Build And Push
         run: |-
           docker buildx build \
             --build-arg PHP_VERSION=${{ matrix.version }} \
             --platform linux/amd64,linux/arm64 \
             --output "type=image,push=true" \
             --tag ${{ secrets.CI_REGISTRY_IMAGE }}:${{ matrix.version }}-fpm \
-            --file ./Dockerfile ./
+            --file ./fpm/Dockerfile ./
+
+      - name: Apache Build And Push
+        run: |-
+          docker buildx build \
+            --build-arg PHP_VERSION=${{ matrix.version }} \
+            --platform linux/amd64,linux/arm64 \
+            --output "type=image,push=true" \
+            --tag ${{ secrets.CI_REGISTRY_IMAGE }}:${{ matrix.version }}-apache \
+            --file ./apache/Dockerfile ./
