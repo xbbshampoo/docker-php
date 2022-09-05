@@ -12,18 +12,15 @@ jobs:
       matrix:
         version: ["7.4", "8.0", "8.1"]
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        
       - name: Set up Depot CLI
         uses: depot/setup-action@v1
-        
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.CI_REGISTRY_USER }}
           password: ${{ secrets.CI_REGISTRY_PASSWORD }}
-      
       - name: FPM Build And Push
         uses: depot/build-push-action@v1
         with:
@@ -32,7 +29,6 @@ jobs:
           push: true
           file: /fpm/Dockerfile
           tags: ${{ matrix.version }}-fpm
-      
       - name: Apache Build And Push
         uses: depot/build-push-action@v1
         with:
