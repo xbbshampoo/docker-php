@@ -1,7 +1,8 @@
 # syntax=docker/dockerfile:1
 ARG PHP_VERSION=8.1
+ARG SERVER_TYPE=apache
 
-FROM php:$PHP_VERSION-apache
+FROM php:$PHP_VERSION-$SERVER_TYPE
 
 # Install unzip utility and libs needed by zip PHP extension
 RUN apt-get update && apt-get install -y \
