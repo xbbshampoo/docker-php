@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions && \
     IPE_GD_WITHOUTAVIF=1 install-php-extensions amqp apcu bcmath bz2 calendar exif gd gmp imagick imap intl ldap  \
-    mysqli opcache pcntl pdo_mysql pdo_pgsql pgsql redis xmlrpc zip xsl grpc
+    mysqli opcache pcntl pdo_mysql pdo_pgsql pgsql redis xmlrpc zip xsl
 
 # install Composer
 COPY --from=composer /usr/bin/composer /usr/bin/composer
