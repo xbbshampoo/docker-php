@@ -8,7 +8,8 @@ FROM php:$PHP_VERSION-$SERVER_TYPE
 RUN apt-get update && apt-get install -y \
     zlib1g-dev \
     libzip-dev \
-    unzip
+    unzip && \
+    rm -rf /var/lib/apt/lists/*
 
 # install some base extensions
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
