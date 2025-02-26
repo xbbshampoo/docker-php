@@ -13,7 +13,7 @@ jobs:
       id-token: write
     strategy:
       matrix:
-        version: [ "8.1", "8.2", "8.3" ]
+        version: [ "8.2", "8.3", "8.4" ]
         server_type: [ "fpm", "apache" ]
     steps:
       - name: Checkout
